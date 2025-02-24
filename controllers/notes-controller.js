@@ -1,4 +1,4 @@
-const mariadb = require('./database/connect/mariadb');
+const mariadb = require('../database/connect/mariadb');
 
 const createNote = (req, res) => {
   const users_id = 1;

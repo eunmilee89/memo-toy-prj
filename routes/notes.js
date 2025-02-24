@@ -7,7 +7,7 @@ const {
   getNoteById,
   deleteNoteById,
   updateNoteById,
-} = require('../requestHandler');
+} = require('../controllers/notes-controller');
 
 router // '/notes'
   .route('/')
