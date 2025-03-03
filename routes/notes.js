@@ -1,5 +1,13 @@
 const express = require('express');
 const router = express.Router();
+
+const {
+  handleValidation,
+  userIdValidate,
+  titleValidate,
+  idValidate,
+} = require('../middlewares/validation');
+
 const {
   createNote,
   getAllNotes,
@@ -11,14 +19,14 @@ const {
 
 router // '/notes'
   .route('/')
-  .post(createNote)
-  .get(getAllNotes)
-  .delete(deleteAllNotes);
+  .post([userIdValidate, titleValidate, handleValidation], createNote)
+  .get([userIdValidate, handleValidation], getAllNotes)
+  .delete([userIdValidate, handleValidation], deleteAllNotes);
 
 router // '/notes/:id'
   .route('/:id')
-  .get(getNoteById)
-  .delete(deleteNoteById)
-  .put(updateNoteById);
+  .get([idValidate, handleValidation], getNoteById)
+  .delete([idValidate, handleValidation], deleteNoteById)
+  .put([idValidate, handleValidation], updateNoteById);
 
 module.exports = router;
